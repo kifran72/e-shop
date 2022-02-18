@@ -147,19 +147,19 @@
   ],
   "categories": [
     {
-      "label": "Men",
+      "label": "Homme",
       "slug": "men"
     },
     {
-      "label": "Women",
+      "label": "Femme",
       "slug": "women"
     },
     {
-      "label": "Sale",
+      "label": "Solde",
       "slug": "sale"
     },
     {
-      "label": "New",
+      "label": "Nouveauté",
       "slug": "new"
     }
   ]

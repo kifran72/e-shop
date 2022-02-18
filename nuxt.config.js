@@ -77,9 +77,10 @@ export default {
     "@vue-storefront/middleware/nuxt",
   ],
   i18n: {
-    currency: "USD",
-    country: "US",
+    currency: "EUR",
+    country: "FR",
     countries: [
+      { name: "FR", label: "France", states: ["Paris", "Bordeaux"] },
       { name: "US", label: "United States", states: ["California", "Nevada"] },
       { name: "AT", label: "Austria" },
       { name: "DE", label: "Germany" },
@@ -90,16 +91,24 @@ export default {
       { name: "USD", label: "Dollar" },
     ],
     locales: [
+      { code: "fr", label: "France", file: "fr.js", iso: "fr" },
       { code: "en", label: "English", file: "en.js", iso: "en" },
       { code: "de", label: "German", file: "de.js", iso: "de" },
     ],
-    defaultLocale: "en",
+    defaultLocale: "fr",
     lazy: true,
     seo: true,
     langDir: "lang/",
     vueI18n: {
-      fallbackLocale: "en",
+      fallbackLocale: "fr",
       numberFormats: {
+        fr: {
+          currency: {
+            style: "currency",
+            currency: "EUR",
+            currencyDisplay: "symbol",
+          },
+        },
         en: {
           currency: {
             style: "currency",

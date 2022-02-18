@@ -97,9 +97,7 @@
       <NewsletterModal @email-submitted="onSubscribe" />
     </LazyHydrate>
 
-    <LazyHydrate when-visible>
-      <InstagramFeed />
-    </LazyHydrate>
+  
 
   </div>
 </template>

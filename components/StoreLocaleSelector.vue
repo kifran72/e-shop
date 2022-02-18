@@ -8,34 +8,9 @@
     </SfButton>
     <SfBottomModal
       :is-open="isLangModalOpen"
-      :title="availableStores.length > 0 ? 'Choose store': ''"
+      title="Choose language"
       @click:close="isLangModalOpen = !isLangModalOpen"
     >
-      <SfList>
-        <SfListItem v-for="store in availableStores" :key="store.id">
-          <a
-            href="/"
-            class="container__store--link"
-            :class="isStoreSelected(store) ? 'container__store--selected' : ''"
-            @click="changeStore(store)"
-          >
-            <SfCharacteristic class="language">
-              <template #title>
-                <span>{{ store.name }}</span>
-              </template>
-              <template #icon>
-                <SfImage :src="`/icons/langs/${getStoreLocale(store)}.webp`" width="20" alt="Flag" class="language__flag" />
-              </template>
-            </SfCharacteristic>
-          </a>
-        </SfListItem>
-      </SfList>
-
-      <SfHeading
-        :level="3"
-        title="Choose language"
-        class="container__lang--title"
-      />
       <SfList>
         <SfListItem v-for="lang in availableLocales" :key="lang.code">
           <nuxt-link :to="switchLocalePath(lang.code)">

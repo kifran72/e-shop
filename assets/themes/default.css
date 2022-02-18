@@ -1,0 +1,22 @@
+:root {
+  --_c-green-primary: #f63131 !important;
+  --_c-green-secondary: #ff5858 !important;
+  --_c-dark-primary: #070505 !important;
+  --_c-dark-secondary: #161616 !important;
+  --_c-gray-primary: #575757 !important;
+  --_c-gray-secondary: #a1a1a6 !important;
+  --_c-gray-accent: #f2f2f2 !important;
+  --_c-red-primary: #070505 !important;
+  --_c-red-secondary: #161616 !important;
+}
+
+/*  Palettes
+
+--_c-light-primary
+--_c-light-secondary
+--_c-yellow-primary
+--_c-yellow-secondary
+--_c-blue-primary
+--_c-blue-secondary 
+
+*/

@@ -1,0 +1,52 @@
+{
+  "teeshirts": [
+    {
+      "femme": [
+        {
+          "titre": "Joggins femme",
+          "prix": "20.00",
+          "image": "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          "description": "Joggins femme",
+          "couleur": "rouge",
+          "taille": "M",
+          "sexe": "femme"
+        }
+      ],
+      "homme": [
+        {
+          "titre": "Joggins homme",
+          "prix": "20.00",
+          "image": "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          "description": "Joggins homme",
+          "couleur": "rouge",
+          "taille": "M",
+          "sexe": "homme"
+        }
+      ]
+    }
+  ],
+  "joggins": {
+    "femme": [
+      {
+        "titre": "Joggins femme",
+        "prix": "20.00",
+        "image": "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "description": "Joggins femme",
+        "couleur": "rouge",
+        "taille": "M",
+        "sexe": "femme"
+      }
+    ],
+    "homme": [
+      {
+        "titre": "Joggins homme",
+        "prix": "20.00",
+        "image": "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "description": "Joggins homme",
+        "couleur": "rouge",
+        "taille": "M",
+        "sexe": "homme"
+      }
+    ]
+  }
+}

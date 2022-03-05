@@ -1,0 +1,10 @@
+// app global css in SCSS form
+@font-face {
+  font-family: circular;
+  src: url("./fonts/circular-std-medium-500.ttf");
+}
+
+// declare a class which applies it
+.circular {
+  font-family: "circular";
+}

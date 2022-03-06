@@ -96,13 +96,13 @@ import { useQuasar } from "quasar";
 import Categories from "components/Categories.vue";
 const linksList = [
   {
-    title: "Tee-shirt",
+    title: "Equipements",
     caption: "Tee-shirt",
     icon: "navigate_next",
     link: "/teeshirts",
   },
   {
-    title: "Joggins",
+    title: "Packs",
     caption: "Joggins",
     icon: "navigate_next",
     link: "/joggins",

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pl-xl q-pr-xl">
+  <q-page class="q-pl-xl q-pr-xl q-pb-xl">
     <div class="wrapper">
       <div v-for="sexe in getArticle.sexe" :key="sexe">
         <h5>
@@ -44,7 +44,7 @@
 }
 
 /* IPAD */
-@media (max-width: 1023px) {
+@media (max-width: 1300px) {
   .wrapper2 {
     grid-template-columns: repeat(2, 1fr);
   }

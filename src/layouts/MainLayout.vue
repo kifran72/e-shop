@@ -1,7 +1,3 @@
-
-
-
-
 <template>
   <q-layout view="hHh LpR fFf">
     <q-header elevated class="bg-primary text-black">
@@ -103,13 +99,13 @@ const linksList = [
     title: "Tee-shirt",
     caption: "Tee-shirt",
     icon: "navigate_next",
-    link: "/Tee-shirt",
+    link: "/teeshirts",
   },
   {
     title: "Joggins",
     caption: "Joggins",
     icon: "navigate_next",
-    link: "/Joggins",
+    link: "/joggins",
   },
 ];
 

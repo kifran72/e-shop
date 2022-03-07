@@ -1,5 +1,9 @@
 <template>
   <q-page class="q-pa-xl">
+    <div class="flex items-center q-pb-xl">
+      <q-icon name="west" size="lg" @click="goBack" />
+      <p class="cursor-pointer" style="margin: 0; margin-left: 1rem;" @click="goBack">Retour</p>
+    </div>
     <div class="wrapperArticle">
       <img class="articleImg" :src="getArticle.image" />
       <div :class="screen.xs ? '' : 'q-pl-lg'">
@@ -37,7 +41,6 @@
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   grid-gap: 1rem;
-  margin-top: 5rem;
 }
 
 /* IPHONE */
@@ -71,6 +74,12 @@ export default defineComponent({
         })
       }
     };
+  },
+  methods: {
+    goBack() {
+      this.$router.push("/equipements");
+
+    }
   },
   computed: {
     getArticle() {

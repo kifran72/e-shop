@@ -1,157 +1,123 @@
 [
   {
-    "type": "teeshirts",
-    "sexe": [
+    "id":"c6cbb629-367a-4aa3-93bb-fa2955d538ae",
+    "type": "equipements",
+    "label": "Equipements",
+    "items": [
       {
-        "origin": "femme",
-        "items": [
+        "id": "166c9f0c-e460-43ed-be37-9cc5bb89655f",
+        "type": "teeshirts",
+        "label": "Tee-shirts",
+        "sexe": [
           {
-            "titre": "Tee-shirts noir",
-            "prix": "20.00",
-            "image": "https://contents.mediadecathlon.com/p1764093/k$bd17333fb4ec4274fab06d61b2053782/sq/250x250/TEE-SHIRT-RUNNING-FEMME-RESPIRANT-KIPRUN-SKINCARE-NOIR.jpg",
-            "description": "Tee-shirts noir",
-            "couleur": "rouge",
-            "taille": "M"
+            "id": "d0124fd4-3232-451b-bad4-6c6b1398eaee",
+            "origin": "femme",
+            "label": "Femme",
+            "items": [
+              {
+                "id":"2c01adcc-2748-405d-8ec5-de3fbda6a699",
+                "origin": "femme",
+                "titre": "Tee-shirts noir",
+                "prix": "20.00",
+                "image": "https://contents.mediadecathlon.com/p1764093/k$bd17333fb4ec4274fab06d61b2053782/sq/250x250/TEE-SHIRT-RUNNING-FEMME-RESPIRANT-KIPRUN-SKINCARE-NOIR.jpg",
+                "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                "couleur": "rouge",
+                "taille": "M",
+                "counter": 1,
+                "type": "teeshirts"
+              },
+              {
+                "id":"6ea201b0-fbf4-408b-a305-0ad39c2beac4",
+                "origin": "femme",
+                "titre": "Tee-shirts jaune",
+                "prix": "20.00",
+                "image": "https://www.sip19.fr/5752-large_default/t-shirt-sport-femme-140g-shanghai.jpg",
+                "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                "couleur": "rouge",
+                "taille": "M",
+                "counter": 1,
+                "type": "teeshirts"
+              },
+              {
+                "id": "c4ea777c-69ad-4268-8966-9dc6287137df",
+                "origin": "femme",
+                "titre": "Tee-shirts vert",
+                "prix": "20.00",
+                "image": "https://www.toiture-epdm.fr/wp-content/uploads/2021/11/femme-terranova-t-shirt-oversize-esprit-sport-vert-c3a9meraude-vert-c3a9meraude-t-shirts.jpg",
+                "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                "couleur": "rouge",
+                "taille": "M",
+                "counter": 1,
+                "type": "teeshirts"
+              },
+              {
+                "id": "1b42563c-8fb7-44eb-8163-3e6355c12dbe",
+                "origin": "femme",
+                "titre": "Tee-shirts bleu",
+                "prix": "20.00",
+                "image": "https://contents.mediadecathlon.com/p2048832/k$b67e312751e0d065b47daf016e786ffa/t-shirt-manches-courtes-jogging-femme-run-dry-marine.jpg?&f=800x800",
+                "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                "couleur": "rouge",
+                "taille": "M",
+                "counter": 1,
+                "type": "teeshirts"
+              }
+            ]
           },
           {
-            "titre": "Tee-shirts jaune",
-            "prix": "20.00",
-            "image": "https://www.sip19.fr/5752-large_default/t-shirt-sport-femme-140g-shanghai.jpg",
-            "description": "Tee-shirts jaune",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Tee-shirts vert",
-            "prix": "20.00",
-            "image": "https://www.toiture-epdm.fr/wp-content/uploads/2021/11/femme-terranova-t-shirt-oversize-esprit-sport-vert-c3a9meraude-vert-c3a9meraude-t-shirts.jpg",
-            "description": "Tee-shirts vert",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Tee-shirts bleu",
-            "prix": "20.00",
-            "image": "https://contents.mediadecathlon.com/p2048832/k$b67e312751e0d065b47daf016e786ffa/t-shirt-manches-courtes-jogging-femme-run-dry-marine.jpg?&f=800x800",
-            "description": "Tee-shirts bleu",
-            "couleur": "rouge",
-            "taille": "M"
-          }
-        ]
-      },
-      {
-        "origin": "homme",
-        "items": [
-          {
-            "titre": "Tee-shirts noir",
-            "prix": "20.00",
-            "image": "https://contents.mediadecathlon.com/p1886229/k$7f908d0d9e3e6bf877cbdc3e0fcf469f/sq/8588361.jpg?format=auto&f=800x0",
-            "description": "Tee-shirts noir",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Tee-shirts jaune",
-            "prix": "20.00",
-            "image": "https://contents.mediadecathlon.com/p1613523/k$616f63a797fac6b62003f2e1b08c0360/sq/t-shirt-running-respirant-homme-dry-jaune-citron.jpg?format=auto&f=800x0",
-            "description": "Tee-shirts jaune",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Tee-shirts vert",
-            "prix": "20.00",
-            "image": "https://www.brodtextile.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/a/pa476-2_2020_1.jpg",
-            "description": "Tee-shirts vert",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Tee-shirts bleu",
-            "prix": "20.00",
-            "image": "https://mistertee.fr/sites/default/files/styles/mistertee_product_display_medium/public/pa438-3_2020-logo.jpg",
-            "description": "Tee-shirts bleu",
-            "couleur": "rouge",
-            "taille": "M"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "type": "joggins",
-    "sexe": [
-      {
-        "origin": "femme",
-        "items": [
-          {
-            "titre": "Joggins noir",
-            "prix": "20.00",
-            "image": "https://contents.mediadecathlon.com/p1764093/k$bd17333fb4ec4274fab06d61b2053782/sq/250x250/TEE-SHIRT-RUNNING-FEMME-RESPIRANT-KIPRUN-SKINCARE-NOIR.jpg",
-            "description": "Joggins noir",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Joggins jaune",
-            "prix": "20.00",
-            "image": "https://www.sip19.fr/5752-large_default/t-shirt-sport-femme-140g-shanghai.jpg",
-            "description": "Joggins jaune",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Joggins vert",
-            "prix": "20.00",
-            "image": "https://www.toiture-epdm.fr/wp-content/uploads/2021/11/femme-terranova-t-shirt-oversize-esprit-sport-vert-c3a9meraude-vert-c3a9meraude-t-shirts.jpg",
-            "description": "Joggins vert",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Joggins bleu",
-            "prix": "20.00",
-            "image": "https://contents.mediadecathlon.com/p2048832/k$b67e312751e0d065b47daf016e786ffa/t-shirt-manches-courtes-jogging-femme-run-dry-marine.jpg?&f=800x800",
-            "description": "Joggins bleu",
-            "couleur": "rouge",
-            "taille": "M"
-          }
-        ]
-      },
-      {
-        "origin": "homme",
-        "items": [
-          {
-            "titre": "Joggins noir",
-            "prix": "20.00",
-            "image": "https://contents.mediadecathlon.com/p1886229/k$7f908d0d9e3e6bf877cbdc3e0fcf469f/sq/8588361.jpg?format=auto&f=800x0",
-            "description": "Joggins noir",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Joggins jaune",
-            "prix": "20.00",
-            "image": "https://contents.mediadecathlon.com/p1613523/k$616f63a797fac6b62003f2e1b08c0360/sq/t-shirt-running-respirant-homme-dry-jaune-citron.jpg?format=auto&f=800x0",
-            "description": "Joggins jaune",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Joggins vert",
-            "prix": "20.00",
-            "image": "https://www.brodtextile.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/a/pa476-2_2020_1.jpg",
-            "description": "Joggins vert",
-            "couleur": "rouge",
-            "taille": "M"
-          },
-          {
-            "titre": "Joggins bleu",
-            "prix": "20.00",
-            "image": "https://mistertee.fr/sites/default/files/styles/mistertee_product_display_medium/public/pa438-3_2020-logo.jpg",
-            "description": "Joggins bleu",
-            "couleur": "rouge",
-            "taille": "M"
+            "id":"66a91e94-9696-4c19-a005-15b1fa2d85b9",
+            "origin": "homme",
+            "label": "Homme",
+            "items": [
+              {
+                "id":"d1f8a47d-84be-49d5-9956-9fb031631393",
+                "origin": "homme",
+                "titre": "Tee-shirts noir",
+                "prix": "20.00",
+                "image": "https://contents.mediadecathlon.com/p1886229/k$7f908d0d9e3e6bf877cbdc3e0fcf469f/sq/8588361.jpg?format=auto&f=800x0",
+                "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                "couleur": "rouge",
+                "taille": "M",
+                "counter": 1,
+                "type": "teeshirts"
+              },
+              {
+                "id":"b596d697-6883-4804-884f-fd3327dfeb7b",
+                "origin": "homme",
+                "titre": "Tee-shirts jaune",
+                "prix": "20.00",
+                "image": "https://contents.mediadecathlon.com/p1613523/k$616f63a797fac6b62003f2e1b08c0360/sq/t-shirt-running-respirant-homme-dry-jaune-citron.jpg?format=auto&f=800x0",
+                "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                "couleur": "rouge",
+                "taille": "M",
+                "counter": 1,
+                "type": "teeshirts"
+              },
+              {
+                "id":"db15180e-4020-4746-9b2e-09205fa7851e",
+                "origin": "homme",
+                "titre": "Tee-shirts vert",
+                "prix": "20.00",
+                "image": "https://www.brodtextile.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/a/pa476-2_2020_1.jpg",
+                "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                "couleur": "rouge",
+                "taille": "M",
+                "counter": 1,
+                "type": "teeshirts"
+              },
+              {
+                "id":"5954cd5d-173c-44ff-9107-e80f3fcf892c",
+                "origin": "homme",
+                "titre": "Tee-shirts bleu",
+                "prix": "20.00",
+                "image": "https://mistertee.fr/sites/default/files/styles/mistertee_product_display_medium/public/pa438-3_2020-logo.jpg",
+                "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                "couleur": "rouge",
+                "taille": "M",
+                "counter": 1,
+                "type": "teeshirts"
+              }
+            ]
           }
         ]
       }

@@ -24,12 +24,29 @@
             @click="goToHome()"
           />
         </q-toolbar-title>
-        <q-icon
+        <q-btn
+          class="q-mr-md"
+          dense
+          round
+          flat
+          icon="shopping_cart"
+          size="lg"
+          @click="toggleRightDrawer"
+        >
+          <q-badge
+            color="primary"
+            floating
+            rounded
+            transparent
+            v-if="store.state.carts.items.length !== 0"
+          >{{ store.state.carts.items.length }}</q-badge>
+        </q-btn>
+        <!-- <q-icon
           class="q-mr-md cursor-pointer"
           name="shopping_cart"
           size="lg"
           @click="toggleRightDrawer"
-        />
+        />-->
       </q-toolbar>
     </q-header>
 
@@ -43,11 +60,7 @@
       bordered
       fixed
     >
-      <Categories
-        v-for="link in essentialLinks"
-        :key="link.title"
-        v-bind="link"
-      />
+      <Categories v-for="link in essentialLinks" :key="link.title" v-bind="link" />
     </q-drawer>
 
     <!-- Mobile -->
@@ -58,29 +71,18 @@
       side="left"
     >
       <div class="flex justify-end q-pa-md">
-        <q-icon
-          name="close"
-          class="cursor-pointer"
-          size="lg"
-          @click="toggleLeftDrawer"
-        />
+        <q-icon name="close" class="cursor-pointer" size="lg" @click="toggleLeftDrawer" />
       </div>
 
-      <Categories
-        v-for="link in essentialLinks"
-        :key="link.title"
-        v-bind="link"
-      />
+      <Categories v-for="link in essentialLinks" :key="link.title" v-bind="link" />
     </q-drawer>
 
     <!-- Cart -->
     <q-drawer class="q-ma-md" v-model="rightDrawerOpen" side="right" elevated>
-      <q-icon
-        name="close "
-        class="cursor-pointer"
-        size="lg"
-        @click="toggleRightDrawer"
-      />
+      <div class="flex justify-start closeCart">
+        <q-icon name="close " class="cursor-pointer" size="lg" @click="toggleRightDrawer" />
+      </div>
+      <Cart />
     </q-drawer>
 
     <q-page-container>
@@ -89,29 +91,38 @@
   </q-layout>
 </template>
 
+<style>
+.closeCart {
+  padding: 16px 12px;
+}
+</style>
 
 <script>
 import { ref } from "vue";
+import { useStore } from "vuex";
 import { useQuasar } from "quasar";
 import Categories from "components/Categories.vue";
+import Cart from "components/Cart.vue";
+
 const linksList = [
   {
     title: "Equipements",
     caption: "Tee-shirt",
     icon: "navigate_next",
-    link: "/teeshirts",
+    link: "/equipements",
   },
-  {
-    title: "Packs",
-    caption: "Joggins",
-    icon: "navigate_next",
-    link: "/joggins",
-  },
+  // {
+  //   title: "Packs",
+  //   caption: "Joggins",
+  //   icon: "navigate_next",
+  //   link: "/packs",
+  // },
 ];
 
 export default {
   components: {
     Categories,
+    Cart
   },
   methods: {
     goToHome() {
@@ -121,20 +132,22 @@ export default {
   setup() {
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
+    const $store = useStore();
+
     const $q = useQuasar();
 
     return {
+      store: $store,
       screen: $q.screen,
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
-
       rightDrawerOpen,
       toggleRightDrawer() {
         rightDrawerOpen.value = !rightDrawerOpen.value;
-      },
+      }
     };
   },
 };

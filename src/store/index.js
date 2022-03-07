@@ -4,6 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 
 // Modules
 import user from "./modules/user";
+import carts from "./modules/carts";
 
 /*
  * If not building with SSR mode, you can
@@ -18,6 +19,7 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       user,
+      carts,
     },
     plugins: [createPersistedState()],
 

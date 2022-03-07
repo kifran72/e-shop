@@ -1,5 +1,5 @@
 <template>
-  <q-scroll-area class="q-mt-xl" style="height:100%; margin-bottom: 10rem;">
+  <q-scroll-area class="q-mt-xl" style="height:100%; margin-bottom: 12rem;">
     <q-item class="block q-pr-xl" v-for="item in carts.items" :key="item.id">
       <img class="cartImg" :src="item.image" alt />
       <div class="flex justify-between">
@@ -48,7 +48,7 @@
     <p>
       <b>Prix total: {{ checkout }}€</b>
     </p>
-    <q-btn label="Acheter" class="btnBuy" color="primary" />
+    <q-btn label="Acheter" class="btnBuy q-pa-md" color="primary" />
   </div>
 </template>
 <style>

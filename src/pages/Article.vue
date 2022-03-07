@@ -17,7 +17,7 @@
             ripple
             label="Ajouez au pannier"
             color="primary"
-            @click="store.commit('carts/add', getArticle), showNotif('Article ajouté !', 'primary')"
+            @click="store.commit('carts/add', getArticle), showNotif('Article ajouté !', 'black')"
           />
         </div>
       </div>

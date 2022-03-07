@@ -28,7 +28,7 @@
                     ripple
                     icon="add_shopping_cart"
                     color="primary"
-                    @click="store.commit('carts/add', itemArticle), showNotif('Article ajouté !', 'primary')"
+                    @click="store.commit('carts/add', itemArticle), showNotif('Article ajouté !', 'black')"
                   />
                 </div>
               </div>

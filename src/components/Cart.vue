@@ -1,6 +1,6 @@
 <template>
-  <q-scroll-area style="height: 42.3rem;" class="bg-white">
-    <q-item class="block q-pr-xl q-pb-lg" v-for="item in carts.items" :key="item.id">
+  <q-scroll-area class="q-mt-xl" style="height:100%; margin-bottom: 10rem;">
+    <q-item class="block q-pr-xl" v-for="item in carts.items" :key="item.id">
       <img class="cartImg" :src="item.image" alt />
       <div class="flex justify-between">
         <p>{{ item.titre }}</p>
@@ -13,7 +13,7 @@
             icon="remove"
             size="lg"
             color="black"
-            @click="store.commit('carts/decrement', item), showNotif('Article supprimé !', 'primary')"
+            @click="store.commit('carts/decrement', item), showNotif('Article supprimé !', 'black')"
           />
           <p class="counterCart">{{ item.counter }}</p>
 
@@ -24,7 +24,7 @@
             icon="add"
             size="lg"
             color="black"
-            @click="store.commit('carts/increment', item), showNotif('Article Ajouté !', 'primary')"
+            @click="store.commit('carts/increment', item), showNotif('Article Ajouté !', 'black')"
           />
           <q-btn
             class="q-ml-md"
@@ -34,14 +34,18 @@
             icon="delete"
             size="md"
             color="black"
-            @click="store.commit('carts/remove', item), showNotif('Article retiré du pannier !', 'primary')"
+            @click="store.commit('carts/remove', item), showNotif('Article retiré du pannier !', 'black')"
           />
         </div>
       </div>
     </q-item>
   </q-scroll-area>
-  <div class="q-pl-md" v-if="checkout !== 0">
-    <p class="q-mt-md">
+
+  <div class="q-pa-lg absolute-bottom bg-white" v-if="checkout !== 0">
+    <p>
+      <b>{{ store.state.carts.items.length }} articles</b>
+    </p>
+    <p>
       <b>Prix total: {{ checkout }}€</b>
     </p>
     <q-btn label="Acheter" class="btnBuy" color="primary" />
@@ -101,7 +105,7 @@ export default defineComponent({
         $q.notify({
           message: message,
           color: color,
-          position: "bottom"
+          position: "top-right"
         })
       }
     };

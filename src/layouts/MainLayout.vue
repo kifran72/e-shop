@@ -78,8 +78,8 @@
     </q-drawer>
 
     <!-- Cart -->
-    <q-drawer class="q-ma-md" v-model="rightDrawerOpen" side="right" elevated>
-      <div class="flex justify-start q-pb-md">
+    <q-drawer class="q-ma-md" v-model="rightDrawerOpen" side="right" behavior="mobile" bordered>
+      <div class="q-pa-md absolute-top bg-white" style="z-index: 1;">
         <q-icon name="close " class="cursor-pointer" size="lg" @click="toggleRightDrawer" />
       </div>
       <Cart />

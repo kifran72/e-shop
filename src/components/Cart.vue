@@ -9,6 +9,7 @@
           <q-btn
             ripple
             dense
+            round
             flat
             icon="remove"
             size="lg"
@@ -20,6 +21,7 @@
           <q-btn
             ripple
             dense
+            round
             flat
             icon="add"
             size="lg"
@@ -61,7 +63,7 @@
 
 .btnBuy {
   border-radius: 12px;
-  width: 15rem;
+  width: 15.5rem;
 }
 
 .counterCart {

@@ -40,7 +40,7 @@
       </div>
     </q-item>
   </q-scroll-area>
-  <div v-if="checkout !== 0">
+  <div class="q-pl-md" v-if="checkout !== 0">
     <p class="q-mt-md">
       <b>Prix total: {{ checkout }}€</b>
     </p>
@@ -57,7 +57,7 @@
 
 .btnBuy {
   border-radius: 12px;
-  width: 16.5rem;
+  width: 15rem;
 }
 
 .counterCart {

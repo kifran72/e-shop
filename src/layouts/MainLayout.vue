@@ -79,7 +79,7 @@
 
     <!-- Cart -->
     <q-drawer class="q-ma-md" v-model="rightDrawerOpen" side="right" elevated>
-      <div class="flex justify-start closeCart">
+      <div class="flex justify-start q-pb-md">
         <q-icon name="close " class="cursor-pointer" size="lg" @click="toggleRightDrawer" />
       </div>
       <Cart />
@@ -92,9 +92,6 @@
 </template>
 
 <style>
-.closeCart {
-  padding: 16px 12px;
-}
 </style>
 
 <script>

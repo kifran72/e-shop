@@ -2,7 +2,7 @@
   <q-page class="q-pa-xl">
     <div class="wrapperArticle">
       <img class="articleImg" :src="getArticle.image" />
-      <div class="q-pl-lg">
+      <div :class="screen.xs ? '' : 'q-pl-lg'">
         <h4>{{ getArticle.titre }}</h4>
         <p>{{ getArticle.description }}</p>
         <div class="q-pt-md flex flex-center">

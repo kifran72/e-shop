@@ -22,6 +22,10 @@
         </div>
       </div>
     </div>
+    <!-- place QPageScroller at end of page -->
+    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+      <q-btn fab icon="keyboard_arrow_up" color="black" />
+    </q-page-scroller>
   </q-page>
 </template>
 
@@ -70,7 +74,8 @@ export default defineComponent({
         $q.notify({
           message: message,
           color: color,
-          position: "bottom"
+          position: "bottom-right",
+          actions: [{ icon: 'close', color: 'white' }]
         })
       }
     };

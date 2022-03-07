@@ -103,7 +103,8 @@ export default defineComponent({
         $q.notify({
           message: message,
           color: color,
-          position: "bottom"
+          position: "bottom-right",
+          actions: [{ icon: 'close', color: 'white' }]
         })
       }
     };

@@ -1,6 +1,10 @@
 <template>
-  <!-- <q-scroll-area class="q-mt-xl" style="height:100%; margin-bottom: 12rem;">
-    <q-item class="block q-pr-xl" v-for="item in carts.items" :key="item.id">
+  <q-page style="
+    min-height: 716px;
+    margin-bottom: 10rem;
+    margin-top: 2rem;
+    ">
+    <q-item class="block" v-for="item in carts.items" :key="item.id">
       <img class="cartImg" :src="item.image" alt />
       <div class="flex justify-between">
         <p>{{ item.titre }}</p>
@@ -41,60 +45,11 @@
         </div>
       </div>
     </q-item>
-
-  </q-scroll-area>-->
-  <q-page class="q-mt-xl" style="margin-bottom: 12rem;">
-    <q-item class="block q-pr-xl" v-for="item in carts.items" :key="item.id">
-      <img class="cartImg" :src="item.image" alt />
-      <div class="flex justify-between">
-        <p>{{ item.titre }}</p>
-        <p>{{ item.prix }} €</p>
-        <div class="flex flex-center items-center full-width">
-          <q-btn
-            ripple
-            dense
-            round
-            flat
-            icon="remove"
-            size="lg"
-            color="black"
-            @click="store.commit('carts/decrement', item), showNotif('Article supprimé !', 'black')"
-          />
-          <p class="counterCart">{{ item.counter }}</p>
-
-          <q-btn
-            ripple
-            dense
-            round
-            flat
-            icon="add"
-            size="lg"
-            color="black"
-            @click="store.commit('carts/increment', item), showNotif('Article Ajouté !', 'black')"
-          />
-          <q-btn
-            class="q-ml-md"
-            ripple
-            dense
-            flat
-            icon="delete"
-            size="md"
-            color="black"
-            @click="store.commit('carts/remove', item), showNotif('Article retiré du pannier !', 'black')"
-          />
-        </div>
-      </div>
-    </q-item>
-
-    <!-- place QPageScroller at end of page -->
-    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
-      <q-btn fab icon="keyboard_arrow_up" color="black" />
-    </q-page-scroller>
   </q-page>
   <div
-    class="q-pa-lg absolute-bottom bg-white"
+    class="absolute-bottom bg-white shadow-up-2"
     v-if="checkout !== 0"
-    style="padding-top: 0 !important;"
+    style="padding: 1.5rem 2.2rem;"
   >
     <p>
       <b>{{ store.state.carts.items.length }} articles</b>
@@ -115,7 +70,7 @@
 
 .btnBuy {
   border-radius: 12px;
-  width: 15.5rem;
+  width: 14.3rem;
 }
 
 .counterCart {

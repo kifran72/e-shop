@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh LpR fFf">
-    <q-header elevated class="bg-primary text-black">
+    <q-header class="bg-primary text-black shadow-2">
       <q-toolbar>
         <q-icon
           class="q-ml-md cursor-pointer"
@@ -78,8 +78,8 @@
     </q-drawer>
 
     <!-- Cart -->
-    <q-drawer class="q-ma-md" v-model="rightDrawerOpen" side="right" behavior="mobile" bordered>
-      <div class="q-pa-md absolute-top bg-white" style="z-index: 1;">
+    <q-drawer class="q-pa-xl" v-model="rightDrawerOpen" side="right" behavior="mobile" bordered>
+      <div class="q-pa-md absolute-top bg-white" style="z-index: 1; height: 4.5rem;">
         <q-icon name="close " class="cursor-pointer" size="lg" @click="toggleRightDrawer" />
       </div>
       <Cart />

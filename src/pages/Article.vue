@@ -1,14 +1,16 @@
 <template>
-  <q-page class="q-pa-xl">
-    <div class="flex items-center q-pb-xl">
+  <q-page class="q-pa-xl" style="padding-top: 1.5rem;">
+    <div class="flex items-center q-pb-lg">
       <q-icon name="west" size="lg" @click="goBack" />
       <p class="cursor-pointer" style="margin: 0; margin-left: 1rem;" @click="goBack">Retour</p>
     </div>
     <div class="wrapperArticle">
       <img class="articleImg" :src="getArticle.image" />
-      <div :class="screen.xs ? '' : 'q-pl-lg'">
-        <h4>{{ getArticle.titre }}</h4>
-        <p>{{ getArticle.description }}</p>
+      <div :class="screen.xs ? '' : 'q-pl-lg  flex justify-between column'">
+        <div>
+          <h4>{{ getArticle.titre }}</h4>
+          <p>{{ getArticle.description }}</p>
+        </div>
         <div class="q-pt-md flex flex-center">
           <q-btn
             size="md"
@@ -22,6 +24,7 @@
         </div>
       </div>
     </div>
+
     <!-- place QPageScroller at end of page -->
     <q-page-scroller position="bottom-left" :scroll-offset="150" :offset="[18, 18]">
       <q-btn fab icon="keyboard_arrow_up" color="black" />
@@ -32,7 +35,8 @@
 <style>
 .articleImg {
   width: 100%;
-  height: 36rem;
+  height: 100%;
+  max-height: 49.9rem;
   object-fit: cover;
   border-radius: 12px;
 }

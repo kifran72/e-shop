@@ -78,7 +78,7 @@
     </q-drawer>
 
     <!-- Cart -->
-    <q-drawer class="q-pa-xl" v-model="rightDrawerOpen" side="right" behavior="mobile" bordered>
+    <q-drawer class="q-pa-lg" v-model="rightDrawerOpen" side="right" behavior="mobile" bordered>
       <div class="q-pa-md absolute-top bg-white" style="z-index: 1; height: 4.5rem;">
         <q-icon name="close " class="cursor-pointer" size="lg" @click="toggleRightDrawer" />
       </div>
@@ -90,9 +90,6 @@
     </q-page-container>
   </q-layout>
 </template>
-
-<style>
-</style>
 
 <script>
 import { ref } from "vue";
@@ -144,7 +141,8 @@ export default {
       rightDrawerOpen,
       toggleRightDrawer() {
         rightDrawerOpen.value = !rightDrawerOpen.value;
-      }
+      },
+
     };
   },
 };

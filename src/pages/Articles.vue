@@ -3,11 +3,11 @@
     <div class="wrapper q-pb-xl">
       <div v-for="article in getArticle" :key="article">
         <div v-for="item in article.items" :key="item">
-          <h5>
+          <h5 style="margin-top: 2rem; margin-bottom: 2rem;">
             <b>{{ item.label }}</b>
           </h5>
           <div v-for="sexe in item.sexe" :key="sexe">
-            <h6>
+            <h6 style="margin-top: 2rem; margin-bottom: 2rem;">
               <b>{{ sexe.label }}</b>
             </h6>
             <div class="wrapper2">
@@ -54,7 +54,8 @@
 
 .card {
   width: 100%;
-  height: 20rem;
+  height: 100%;
+  max-height: 30rem;
 }
 
 .wrapper {

@@ -1,9 +1,12 @@
 <template>
-  <q-page style="
+  <q-page
+    style="
     min-height: 716px;
-    margin-bottom: 10rem;
-    margin-top: 2rem;
-    ">
+    margin-bottom: 10.5rem;
+    margin-top: 3rem;
+    margin-left: 0.5rem;
+    "
+  >
     <q-item class="block" v-for="item in carts.items" :key="item.id">
       <img class="cartImg" :src="item.image" alt />
       <div class="flex justify-between">
@@ -46,15 +49,16 @@
       </div>
     </q-item>
   </q-page>
+
   <div
     class="absolute-bottom bg-white shadow-up-2"
     v-if="checkout !== 0"
-    style="padding: 1.5rem 2.2rem;"
+    style="padding: 2.2rem 2.2rem;"
   >
-    <p>
+    <p style="margin-bottom: 0;">
       <b>{{ store.state.carts.items.length }} articles</b>
     </p>
-    <p>
+    <p style="margin-bottom: 1.2rem;">
       <b>Prix total: {{ checkout.toFixed(2) }}€</b>
     </p>
     <q-btn label="Acheter" class="btnBuy q-pa-md" color="primary" />

@@ -81,7 +81,7 @@
     >
       <div class="bg-white absolute-top flex items-center q-pa-md">
         <q-icon name="close " class="cursor-pointer" size="lg" @click="toggleRightDrawer" />
-        <p style="margin: 0; padding-left: 1rem">
+        <p style="margin: 0; padding-left: 1rem" v-if="checkout !== 0">
           Articles total:
           <b>{{ store.state.carts.items.length }}</b>
         </p>
@@ -92,8 +92,8 @@
         style="
           height: 100%;
           max-width: 100%;
-          padding-right: 3rem;
-          padding-left: 3rem;
+          padding-right: 3.8rem;
+          padding-left: 3.8rem;
         "
       >
         <Cart />

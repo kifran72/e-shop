@@ -1,5 +1,10 @@
 <template>
-  <q-item class="block" v-for="item in carts.items" :key="item.id">
+  <q-item
+    class="block q-mb-md q-mt-md"
+    v-for="item in carts.items"
+    :key="item.id"
+    style="padding: 0;"
+  >
     <img
       class="cartImg cursor-pointer"
       :src="item.image"
@@ -18,6 +23,7 @@
           size="lg"
           color="black"
           @click="store.commit('carts/decrement', item), showNotif('Article supprimé !', 'black')"
+          :disable="item.counter === 1"
         />
         <p class="counterCart">{{ item.counter }}</p>
 
@@ -30,6 +36,7 @@
           size="lg"
           color="black"
           @click="store.commit('carts/increment', item), showNotif('Article Ajouté !', 'black')"
+          :disable="item.counter === 10"
         />
         <q-btn
           class="q-ml-md"

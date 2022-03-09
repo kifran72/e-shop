@@ -3,20 +3,21 @@
     <div class="wrapper q-pb-xl">
       <div v-for="article in getArticle" :key="article">
         <div v-for="item in article.items" :key="item">
-          <h5 style="margin-top: 2rem; margin-bottom: 2rem;">
-            <b>{{ item.label }}</b>
-          </h5>
+          <h5
+            style="margin-top: 2rem; margin-bottom: 2rem; text-decoration: underline;"
+          >Categorie {{ item.label }}</h5>
           <div v-for="sexe in item.sexe" :key="sexe">
             <h6 style="margin-top: 2rem; margin-bottom: 2rem;">
               <b>{{ sexe.label }}</b>
             </h6>
             <div class="wrapper2">
               <div class="q-pb-xl card" v-for="itemArticle in sexe.items" :key="itemArticle">
-                <img
-                  class="itemImg shadow-4 cursor-pointer"
+                <q-img
+                  class="itemImg shadow-4 cursor-pointer q-mb-md"
                   :src="itemArticle.image"
                   :alt="itemArticle.description"
                   @click="goToArticle(itemArticle.id, itemArticle.type, itemArticle.origin)"
+                  spinner-color="primary"
                 />
                 <div class="flex justify-between">
                   <div class="flex column">

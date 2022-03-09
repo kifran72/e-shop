@@ -7,46 +7,52 @@
     <div class="wrapperArticle">
       <q-carousel
         v-model="slide"
-        transition-prev="scale"
-        transition-next="scale"
+        class="text-white full-width"
+        height="40rem"
+        control-color="primary"
+        transition-prev="jump-right"
+        transition-next="jump-left"
         swipeable
         animated
-        control-color="primary"
         navigation
         padding
         arrows
-        height="40rem"
-        class="text-white full-width"
       >
         <q-carousel-slide name="style" class="column no-wrap flex-center" style="padding: 0;">
-          <img class="articleImg" :src="getArticle.image" />
+          <q-img class="articleImg" :src="getArticle.image" spinner-color="white" />
         </q-carousel-slide>
         <q-carousel-slide name="tv" class="column no-wrap flex-center" style="padding: 0;">
-          <img
+          <q-img
             class="articleImg"
             src="https://www.sip19.fr/5752-large_default/t-shirt-sport-femme-140g-shanghai.jpg"
+            spinner-color="white"
           />
         </q-carousel-slide>
         <q-carousel-slide name="layers" class="column no-wrap flex-center" style="padding: 0;">
-          <img
+          <q-img
             class="articleImg"
             src="https://www.toiture-epdm.fr/wp-content/uploads/2021/11/femme-terranova-t-shirt-oversize-esprit-sport-vert-c3a9meraude-vert-c3a9meraude-t-shirts.jpg"
+            spinner-color="white"
           />
         </q-carousel-slide>
         <q-carousel-slide name="map" class="column no-wrap flex-center" style="padding: 0;">
-          <img
+          <q-img
             class="articleImg"
             src="https://contents.mediadecathlon.com/p2048832/k$b67e312751e0d065b47daf016e786ffa/t-shirt-manches-courtes-jogging-femme-run-dry-marine.jpg?&f=800x800"
+            spinner-color="white"
           />
         </q-carousel-slide>
       </q-carousel>
-
       <div
         :class="screen.xs ? '' : 'q-pl-lg  flex justify-between column'"
         style="padding-bottom: 2rem;"
       >
         <div>
           <h4>{{ getArticle.titre }}</h4>
+          <h6>
+            Prix:
+            <b>{{ getArticle.prix }} €</b>
+          </h6>
           <p>{{ getArticle.description }}</p>
         </div>
         <div class="q-pt-md flex flex-center">

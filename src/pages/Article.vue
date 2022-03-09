@@ -43,19 +43,16 @@
           />
         </q-carousel-slide>
       </q-carousel>
-      <div
-        :class="screen.xs ? '' : 'q-pl-lg  flex justify-between column'"
-        style="padding-bottom: 2rem;"
-      >
+      <div :class="screen.xs ? '' : 'q-pl-lg  flex justify-between column'">
         <div>
-          <h4>{{ getArticle.titre }}</h4>
-          <h6>
+          <h4 style="margin-bottom: 1rem">{{ getArticle.titre }}</h4>
+          <h6 style="margin: 0 0 1rem;">
             Prix:
             <b>{{ getArticle.prix }} €</b>
           </h6>
-          <p>{{ getArticle.description }}</p>
+          <p class="q-pb-md">{{ getArticle.description }}</p>
         </div>
-        <div class="q-pt-md flex flex-center">
+        <div class="flex flex-center">
           <q-btn
             size="md"
             class="addToCart q-pa-md"
@@ -70,7 +67,7 @@
     </div>
 
     <!-- place QPageScroller at end of page -->
-    <q-page-scroller position="bottom-left" :scroll-offset="150" :offset="[18, 18]">
+    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
       <q-btn fab icon="keyboard_arrow_up" color="black" />
     </q-page-scroller>
   </q-page>
@@ -122,8 +119,8 @@ export default defineComponent({
       showNotif(message, color) {
         $q.notify({
           message: message,
-          color: color,
-          position: "bottom-right",
+          color: 'primary',
+          position: "bottom-left",
           actions: [{ icon: 'close', color: 'white' }]
         })
       }

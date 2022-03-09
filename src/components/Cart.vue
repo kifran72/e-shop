@@ -36,7 +36,6 @@
           size="lg"
           color="black"
           @click="store.commit('carts/increment', item), showNotif('Article Ajouté !', 'black')"
-          :disable="item.counter === 10"
         />
         <q-btn
           class="q-ml-md"
@@ -92,7 +91,7 @@ export default defineComponent({
       showNotif(message, color) {
         $q.notify({
           message: message,
-          color: color,
+          color: 'primary',
           position: "top-right",
           actions: [{ icon: 'close', color: 'white' }]
         })

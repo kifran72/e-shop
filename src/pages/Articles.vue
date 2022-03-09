@@ -39,7 +39,7 @@
       </div>
     </div>
     <!-- place QPageScroller at end of page -->
-    <q-page-scroller position="bottom-left" :scroll-offset="150" :offset="[18, 18]">
+    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
       <q-btn fab icon="keyboard_arrow_up" color="black" />
     </q-page-scroller>
   </q-page>
@@ -71,14 +71,14 @@
 }
 
 /* IPAD */
-@media (max-width: 1400px) {
+@media (max-width: 1100px) {
   .wrapper2 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* IPHONE */
-@media (max-width: 500px) {
+@media (max-width: 450px) {
   .wrapper2 {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -104,8 +104,8 @@ export default defineComponent({
       showNotif(message, color) {
         $q.notify({
           message: message,
-          color: color,
-          position: "bottom-right",
+          color: 'primary',
+          position: "bottom-left",
           actions: [{ icon: 'close', color: 'white' }]
         })
       }

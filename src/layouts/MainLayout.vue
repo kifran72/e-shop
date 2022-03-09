@@ -48,8 +48,7 @@
       show-if-above
       v-model="leftDrawerOpen"
       side="left"
-      bordered
-      fixed
+      elevated
     >
       <Categories v-for="link in essentialLinks" :key="link.title" v-bind="link" />
     </q-drawer>
@@ -86,6 +85,10 @@
           <b>{{ store.state.carts.items.length }}</b>
         </p>
       </div>
+
+      <div class="absolute-center" v-if="store.state.carts.items.length === 0">
+        <h5>Pannier vide</h5>
+      </div>
       <q-scroll-area
         :thumb-style="thumbStyle"
         :bar-style="barStyle"
@@ -99,7 +102,7 @@
         <Cart />
       </q-scroll-area>
       <div class="bg-white absolute-bottom q-pa-lg" style="padding-top: 0;" v-if="checkout !== 0">
-        <q-separator class="q-mb-md" color="grey" />
+        <q-separator class="q-mb-md shadow-6" color="grey" />
 
         <h6 style="margin: 0 0 1rem 0;">
           <b>Prix total: {{ checkout.toFixed(2) }}€</b>

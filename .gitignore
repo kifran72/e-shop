@@ -33,3 +33,5 @@ yarn-error.log*
 *.sln
 .vscode
 src-capacitor
+yarn.lock
+.firebase

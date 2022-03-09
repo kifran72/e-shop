@@ -14,12 +14,14 @@
     "build:pwa": "quasar build -m pwa",
     "apk": "quasar build -m capacitor -T android",
     "mobile": "quasar dev -m capacitor -T android",
-    "addMobile": "quasar mode add capacitor"
+    "addMobile": "quasar mode add capacitor",
+    "deploy": "yarn build && firebase deploy"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "firebase-tools": "^10.2.2",
     "quasar": "^2.0.0",
     "vue": "^3.0.0",
     "vue-i18n": "^9.0.0",

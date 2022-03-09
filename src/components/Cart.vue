@@ -1,68 +1,49 @@
 <template>
-  <q-page
-    style="
-    min-height: 716px;
-    margin-bottom: 10.5rem;
-    margin-top: 3rem;
-    margin-left: 0.5rem;
-    "
-  >
-    <q-item class="block" v-for="item in carts.items" :key="item.id">
-      <img class="cartImg" :src="item.image" alt />
-      <div class="flex justify-between">
-        <p>{{ item.titre }}</p>
-        <p>{{ item.prix }} €</p>
-        <div class="flex flex-center items-center full-width">
-          <q-btn
-            ripple
-            dense
-            round
-            flat
-            icon="remove"
-            size="lg"
-            color="black"
-            @click="store.commit('carts/decrement', item), showNotif('Article supprimé !', 'black')"
-          />
-          <p class="counterCart">{{ item.counter }}</p>
+  <q-item class="block" v-for="item in carts.items" :key="item.id">
+    <img
+      class="cartImg cursor-pointer"
+      :src="item.image"
+      @click="goToArticle(item.id, item.type, item.origin)"
+    />
+    <div class="flex justify-between">
+      <p style="margin:0;">{{ item.titre }}</p>
+      <p style="margin:0;">{{ item.prix }} €</p>
+      <div class="flex flex-center items-center full-width">
+        <q-btn
+          ripple
+          dense
+          round
+          flat
+          icon="remove"
+          size="lg"
+          color="black"
+          @click="store.commit('carts/decrement', item), showNotif('Article supprimé !', 'black')"
+        />
+        <p class="counterCart">{{ item.counter }}</p>
 
-          <q-btn
-            ripple
-            dense
-            round
-            flat
-            icon="add"
-            size="lg"
-            color="black"
-            @click="store.commit('carts/increment', item), showNotif('Article Ajouté !', 'black')"
-          />
-          <q-btn
-            class="q-ml-md"
-            ripple
-            dense
-            flat
-            icon="delete"
-            size="md"
-            color="black"
-            @click="store.commit('carts/remove', item), showNotif('Article retiré du pannier !', 'black')"
-          />
-        </div>
+        <q-btn
+          ripple
+          dense
+          round
+          flat
+          icon="add"
+          size="lg"
+          color="black"
+          @click="store.commit('carts/increment', item), showNotif('Article Ajouté !', 'black')"
+        />
+        <q-btn
+          class="q-ml-md"
+          ripple
+          dense
+          flat
+          icon="delete"
+          size="md"
+          color="black"
+          @click="store.commit('carts/remove', item), showNotif('Article retiré du pannier !', 'black')"
+        />
       </div>
-    </q-item>
-  </q-page>
-
-  <div
-    class="absolute-bottom bg-white shadow-up-2"
-    v-if="checkout !== 0"
-    style="padding: 2.2rem 2.2rem;"
-  >
-    <p style="margin-bottom: 0;">
-      <b>{{ store.state.carts.items.length }} articles</b>
-    </p>
-    <p style="margin-bottom: 1.2rem;">
-      <b>Prix total: {{ checkout.toFixed(2) }}€</b>
-    </p>
-    <q-btn label="Acheter" class="btnBuy q-pa-md" color="primary" />
-  </div>
+    </div>
+  </q-item>
 </template>
 <style>
 .cartImg {
@@ -70,11 +51,6 @@
   height: 10rem;
   object-fit: cover;
   border-radius: 12px;
-}
-
-.btnBuy {
-  border-radius: 12px;
-  width: 14.3rem;
 }
 
 .counterCart {
@@ -93,20 +69,12 @@ import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "Cart",
-  computed: {
-    checkout() {
-      let price = 0;
-      for (let item of this.store.state.carts.items) {
-
-        price = price + (item.prix * item.counter);
-      }
-
-      return price
+  methods: {
+    goToArticle(idArticle, type, origin) {
+      this.$router.push("/" + this.$route.params.category + "/" + type + "/" + origin + "/" + idArticle);
     }
   },
-  mounted() {
-    this.checkout
-  },
+
   setup() {
     const $store = useStore();
     const $q = useQuasar();

@@ -1,9 +1,9 @@
 <template>
   <q-layout view="hHh LpR fFf">
     <q-header class="bg-primary text-black shadow-2">
-      <q-toolbar>
+      <q-toolbar class="q-pr-lg q-pl-lg">
         <q-icon
-          class="q-ml-md cursor-pointer"
+          class="cursor-pointer"
           v-if="screen.xs || screen.sm"
           name="menu"
           size="lg"
@@ -24,20 +24,11 @@
             @click="goToHome()"
           />
         </q-toolbar-title>
-        <q-btn
-          class="q-mr-md"
-          dense
-          round
-          flat
-          icon="shopping_cart"
-          size="lg"
-          @click="toggleRightDrawer"
-        >
+        <q-btn class dense round flat icon="shopping_cart" size="lg" @click="toggleRightDrawer">
           <q-badge
             color="primary"
             floating
             rounded
-            transparent
             v-if="store.state.carts.items.length !== 0"
           >{{ store.state.carts.items.length }}</q-badge>
         </q-btn>
@@ -78,11 +69,49 @@
     </q-drawer>
 
     <!-- Cart -->
-    <q-drawer class="q-pa-lg" v-model="rightDrawerOpen" side="right" behavior="mobile" bordered>
-      <div class="q-pa-md absolute-top bg-white" style="z-index: 1; height: 4.5rem;">
+    <q-drawer
+      class="no-scroll"
+      style="
+        padding: 4rem 0.5rem 9rem;
+      "
+      v-model="rightDrawerOpen"
+      side="right"
+      behavior="mobile"
+      bordered
+    >
+      <div class="bg-white absolute-top flex items-center q-pa-md">
         <q-icon name="close " class="cursor-pointer" size="lg" @click="toggleRightDrawer" />
+        <p style="margin: 0; padding-left: 1rem">
+          Articles total:
+          <b>{{ store.state.carts.items.length }}</b>
+        </p>
       </div>
-      <Cart />
+      <q-scroll-area
+        :thumb-style="thumbStyle"
+        :bar-style="barStyle"
+        style="
+          height: 100%;
+          max-width: 100%;
+          padding-right: 3rem;
+          padding-left: 3rem;
+        "
+      >
+        <Cart />
+      </q-scroll-area>
+      <div class="bg-white absolute-bottom q-pa-lg" style="padding-top: 0;" v-if="checkout !== 0">
+        <q-separator class="q-mb-md" color="grey" />
+
+        <h6 style="margin: 0 0 1rem 0;">
+          <b>Prix total: {{ checkout.toFixed(2) }}€</b>
+        </h6>
+        <q-btn
+          ripple
+          fab
+          label="Passez la commande"
+          class="btnBuy q-pa-md full-width"
+          color="primary"
+        />
+      </div>
     </q-drawer>
 
     <q-page-container>
@@ -123,6 +152,17 @@ export default {
       this.$router.push("/");
     },
   },
+  computed: {
+    checkout() {
+      let price = 0;
+      for (let item of this.store.state.carts.items) {
+
+        price = price + (item.prix * item.counter);
+      }
+
+      return price
+    }
+  },
   setup() {
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
@@ -142,8 +182,25 @@ export default {
       toggleRightDrawer() {
         rightDrawerOpen.value = !rightDrawerOpen.value;
       },
+      thumbStyle: {
+        right: '4px',
+        borderRadius: '5px',
+        backgroundColor: 'black',
+        width: '5px',
+        opacity: 0.75
+      },
 
+      barStyle: {
+        right: '2px',
+        borderRadius: '9px',
+        backgroundColor: 'black',
+        width: '9px',
+        opacity: 0.2
+      }
     };
+  },
+  mounted() {
+    this.checkout
   },
 };
 </script>
@@ -159,8 +216,13 @@ aside .categories {
   background-color: rgb(10, 10, 10) !important;
   color: #ffff;
 }
+
 .q-header {
   background-color: #ffff !important;
+}
+
+.btnBuy {
+  border-radius: 12px;
 }
 
 /* drawer */

@@ -1,12 +1,50 @@
 <template>
   <q-page class="q-pa-xl" style="padding-top: 1.5rem;">
     <div class="flex items-center q-pb-lg">
-      <q-icon name="west" size="lg" @click="goBack" />
+      <q-icon class="cursor-pointer" name="west" size="lg" @click="goBack" />
       <p class="cursor-pointer" style="margin: 0; margin-left: 1rem;" @click="goBack">Retour</p>
     </div>
     <div class="wrapperArticle">
-      <img class="articleImg" :src="getArticle.image" />
-      <div :class="screen.xs ? '' : 'q-pl-lg  flex justify-between column'">
+      <q-carousel
+        v-model="slide"
+        transition-prev="scale"
+        transition-next="scale"
+        swipeable
+        animated
+        control-color="primary"
+        navigation
+        padding
+        arrows
+        height="40rem"
+        class="text-white full-width"
+      >
+        <q-carousel-slide name="style" class="column no-wrap flex-center" style="padding: 0;">
+          <img class="articleImg" :src="getArticle.image" />
+        </q-carousel-slide>
+        <q-carousel-slide name="tv" class="column no-wrap flex-center" style="padding: 0;">
+          <img
+            class="articleImg"
+            src="https://www.sip19.fr/5752-large_default/t-shirt-sport-femme-140g-shanghai.jpg"
+          />
+        </q-carousel-slide>
+        <q-carousel-slide name="layers" class="column no-wrap flex-center" style="padding: 0;">
+          <img
+            class="articleImg"
+            src="https://www.toiture-epdm.fr/wp-content/uploads/2021/11/femme-terranova-t-shirt-oversize-esprit-sport-vert-c3a9meraude-vert-c3a9meraude-t-shirts.jpg"
+          />
+        </q-carousel-slide>
+        <q-carousel-slide name="map" class="column no-wrap flex-center" style="padding: 0;">
+          <img
+            class="articleImg"
+            src="https://contents.mediadecathlon.com/p2048832/k$b67e312751e0d065b47daf016e786ffa/t-shirt-manches-courtes-jogging-femme-run-dry-marine.jpg?&f=800x800"
+          />
+        </q-carousel-slide>
+      </q-carousel>
+
+      <div
+        :class="screen.xs ? '' : 'q-pl-lg  flex justify-between column'"
+        style="padding-bottom: 2rem;"
+      >
         <div>
           <h4>{{ getArticle.titre }}</h4>
           <p>{{ getArticle.description }}</p>
@@ -36,7 +74,7 @@
 .articleImg {
   width: 100%;
   height: 100%;
-  max-height: 49.9rem;
+  max-height: 40rem;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -61,7 +99,7 @@
 </style>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import { useQuasar } from "quasar";
 import Articles from "../../Articles";
@@ -72,6 +110,7 @@ export default defineComponent({
     const $q = useQuasar();
     const $store = useStore();
     return {
+      slide: ref('style'),
       screen: $q.screen,
       store: $store,
       showNotif(message, color) {

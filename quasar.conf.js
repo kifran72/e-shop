@@ -140,9 +140,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `Quasar App`,
-        short_name: `Quasar App`,
-        description: `A Quasar Framework app`,
+        name: `E-shop app`,
+        short_name: `E-shop`,
+        description: `A E-shop app`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
@@ -205,7 +205,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: "test-vuex",
+        appId: "e-shop",
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

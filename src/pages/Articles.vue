@@ -13,7 +13,7 @@
             <div class="wrapper2">
               <div class="q-pb-xl card" v-for="itemArticle in sexe.items" :key="itemArticle">
                 <img
-                  class="itemImg"
+                  class="itemImg shadow-4 cursor-pointer"
                   :src="itemArticle.image"
                   :alt="itemArticle.description"
                   @click="goToArticle(itemArticle.id, itemArticle.type, itemArticle.origin)"

@@ -8,7 +8,7 @@
       <q-carousel
         v-model="slide"
         class="text-white full-width"
-        height="40rem"
+        :height="screen.xs ? '28rem' : '40rem'"
         control-color="primary"
         transition-prev="jump-right"
         transition-next="jump-left"
@@ -52,7 +52,7 @@
           </h6>
           <p class="q-pb-md">{{ getArticle.description }}</p>
         </div>
-        <div class="flex flex-center">
+        <div class="flex flex-center" style="padding-bottom: 2rem;">
           <q-btn
             size="md"
             class="addToCart q-pa-md"

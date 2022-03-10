@@ -6,8 +6,6 @@
           src="https://contents.mediadecathlon.com/p1889227/k$d8a08f9954a2541487a22fdc9e6ac810/800x0/2889pt1223/3853xcr3853/sport_tous_les_jours.jpg?format=auto&quality=80"
         />
       </template>
-
-      <h1 class="text-white">Bienvenue</h1>
     </q-parallax>
 
     <p

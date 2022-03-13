@@ -1,6 +1,5 @@
 # Eshop App
 
-Structure (quasar) 
 
 ## Install the dependencies
 

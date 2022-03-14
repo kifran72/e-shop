@@ -1,6 +1,5 @@
 # Eshop App
 
-Structure (quasar) + front e-commerce (Storefront-ui)
 
 ## Install the dependencies
 

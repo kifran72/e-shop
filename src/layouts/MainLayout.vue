@@ -16,7 +16,7 @@
         <q-toolbar-title
           :class="
             screen.xl || screen.lg || screen.md || screen.md
-              ? 'q-ml-md'
+              ? 'q-ml-sm'
               : 'flex flex-center'
           "
           class="q-pa-md"

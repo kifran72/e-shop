@@ -1,8 +1,8 @@
 {
-  "name": "e-shop",
+  "name": "allinone",
   "version": "0.0.1",
-  "description": "A E-shop Framework app",
-  "productName": "e-shop app",
+  "description": "AllInOne app",
+  "productName": "AllInOne",
   "author": "",
   "private": true,
   "scripts": {

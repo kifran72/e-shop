@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-pa-xl">
-    <h1 style="margin-top: 0">Employés</h1>
+    <h3 style="margin-top: 0">Employés</h3>
 
     <q-btn
       class="q-mt-xl"

@@ -1,41 +1,68 @@
 <template>
   <q-list dark>
-    <q-item clickable v-ripple>
+    <q-item
+      clickable
+      v-ripple
+      :active="$route.path === '/entreprise/dashboard'"
+      @click="$router.push('/entreprise/dashboard')"
+    >
       <q-item-section avatar>
         <q-icon name="home" />
       </q-item-section>
 
-      <q-item-section>
-        <q-tree
-          style="padding-left: 0.4rem"
-          :nodes="home"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="white"
-          text-color="white"
-          dark
-          no-connectors
-        />
-      </q-item-section>
+      <q-item-section style="padding-left: 1.8rem">
+        Vue d'ensemble</q-item-section
+      >
     </q-item>
 
     <q-separator dark />
-
-    <q-item @click="expanded = true">
+    <q-item
+      :active="
+        $route.path === '/entreprise/management/employes' ||
+        $route.path === '/entreprise/management/formations' ||
+        $route.path === '/entreprise/management/recrutements'
+      "
+    >
       <q-item-section avatar>
         <q-icon name="groups" />
       </q-item-section>
 
       <q-item-section>
         <q-tree
+          default-expand-all
           :nodes="management"
-          v-model:expanded="expanded"
+          dark
           node-key="label"
           color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-      /></q-item-section>
+        >
+          <template v-slot:default-header="prop">
+            <span
+              :class="
+                $route.path === '/entreprise/management/employes' ||
+                $route.path === '/entreprise/management/formations' ||
+                $route.path === '/entreprise/management/recrutements'
+                  ? 'text-primary'
+                  : 'text-white'
+              "
+            >
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              v-ripple
+              clickable
+              :class="
+                $route.path === prop.node.link
+                  ? 'text-primary full-width'
+                  : 'text-white cursor-pointer full-width'
+              "
+              @click="$router.push(prop.node.link)"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
+      </q-item-section>
     </q-item>
 
     <q-separator dark />
@@ -48,33 +75,50 @@
       <q-item-section>
         <q-tree
           :nodes="webmarketplace"
-          v-model:expanded="expanded"
+          dark
           node-key="label"
           color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        >
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
-
+    <!--
     <q-separator dark />
-
+  
     <q-item>
       <q-item-section avatar>
         <q-icon name="description" />
       </q-item-section>
 
       <q-item-section>
-        <q-tree
-          :nodes="crm"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        <q-tree :nodes="crm" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -88,13 +132,24 @@
       <q-item-section>
         <q-tree
           :nodes="serviceClient"
-          v-model:expanded="expanded"
+          dark
           node-key="label"
           color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        >
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -106,15 +161,22 @@
       </q-item-section>
 
       <q-item-section>
-        <q-tree
-          :nodes="achats"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-      /></q-item-section>
+        <q-tree :nodes="achats" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree></q-item-section
+      >
     </q-item>
 
     <q-separator dark />
@@ -125,15 +187,21 @@
       </q-item-section>
 
       <q-item-section
-        ><q-tree
-          :nodes="productions"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        ><q-tree :nodes="productions" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -144,16 +212,22 @@
         <q-icon name="widgets" />
       </q-item-section>
 
-      <q-item-section
-        ><q-tree
-          :nodes="logistique"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+      <q-item-section>
+        <q-tree :nodes="logistique" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -165,15 +239,21 @@
       </q-item-section>
 
       <q-item-section>
-        <q-tree
-          :nodes="comptabilite"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        <q-tree :nodes="comptabilite" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -185,15 +265,21 @@
       </q-item-section>
 
       <q-item-section>
-        <q-tree
-          :nodes="sav"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        <q-tree :nodes="sav" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -205,15 +291,21 @@
       </q-item-section>
 
       <q-item-section>
-        <q-tree
-          :nodes="marketing"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        <q-tree :nodes="marketing" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -224,16 +316,22 @@
         <q-icon name="construction" />
       </q-item-section>
 
-      <q-item-section
-        ><q-tree
-          :nodes="rd"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+      <q-item-section>
+        <q-tree :nodes="rd" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -247,13 +345,24 @@
       <q-item-section>
         <q-tree
           :nodes="communication"
-          v-model:expanded="expanded"
+          dark
           node-key="label"
           color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        >
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
     </q-item>
 
@@ -265,17 +374,23 @@
       </q-item-section>
 
       <q-item-section>
-        <q-tree
-          :nodes="annuaire"
-          v-model:expanded="expanded"
-          node-key="label"
-          color="transparent"
-          text-color="white"
-          dark
-          no-connectors
-        />
+        <q-tree :nodes="annuaire" dark node-key="label" color="transparent">
+          <template v-slot:default-header="prop">
+            <span class="text-white">
+              {{ prop.node.root }}
+            </span>
+            <div
+              v-if="prop.node.label"
+              clickable
+              v-ripple
+              class="text-white cursor-pointer"
+            >
+              {{ prop.node.label }}
+            </div>
+          </template>
+        </q-tree>
       </q-item-section>
-    </q-item>
+    </q-item> -->
   </q-list>
 </template>
 
@@ -289,117 +404,66 @@ export default defineComponent({
       this.$router.push(link);
     },
   },
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-
-    caption: {
-      type: String,
-      default: "",
-    },
-
-    link: {
-      type: String,
-      default: "#",
-    },
-
-    icon: {
-      type: String,
-      default: "",
-    },
-  },
 
   setup() {
     return {
       expanded: ref([null]),
-      management: [
-        {
-          label: "Management",
+      selected: ref(""),
 
-          children: [
-            {
-              label: "Good food (with icon)",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service (disabled node with icon)",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings (with icon)",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
       home: [
         {
           label: "Vue d'ensemble",
         },
       ],
-      webmarketplace: [
+      management: [
         {
-          label: "Webmarketplace",
-
+          root: "Management",
           children: [
             {
-              label: "Good food (with icon)",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
+              label: "Gestion des employés",
+              link: "/entreprise/management/employes",
+              children: [],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Formations",
+              link: "/entreprise/management/formations",
               icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Recrutements",
+              link: "/entreprise/management/recrutements",
               icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
+            },
+          ],
+        },
+      ],
+      webmarketplace: [
+        {
+          root: "Webmarketplace",
+          children: [
+            {
+              label: "Good food",
+              icon: "restaurant_menu",
+              selectable: true,
+            },
+            {
+              label: "Good service",
+              icon: "room_service",
+            },
+            {
+              label: "Pleasant surroundings",
+              icon: "photo",
             },
           ],
         },
       ],
       crm: [
         {
-          label: "CRM",
+          root: "CRM",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -407,7 +471,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -416,7 +480,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -432,11 +496,11 @@ export default defineComponent({
       ],
       serviceClient: [
         {
-          label: "Service client",
+          root: "Service client",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -444,7 +508,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -453,7 +517,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -469,11 +533,11 @@ export default defineComponent({
       ],
       achats: [
         {
-          label: "Achats",
+          root: "Achats",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -481,7 +545,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -490,7 +554,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -506,11 +570,11 @@ export default defineComponent({
       ],
       productions: [
         {
-          label: "Productions",
+          root: "Productions",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -518,7 +582,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -527,7 +591,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -543,11 +607,11 @@ export default defineComponent({
       ],
       logistique: [
         {
-          label: "Logistique",
+          root: "Logistique",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -555,7 +619,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -564,7 +628,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -580,11 +644,11 @@ export default defineComponent({
       ],
       comptabilite: [
         {
-          label: "Comptabilité",
+          root: "Comptabilité",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -592,7 +656,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -601,7 +665,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -617,11 +681,11 @@ export default defineComponent({
       ],
       sav: [
         {
-          label: "SAV",
+          root: "SAV",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -629,7 +693,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -638,7 +702,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -654,11 +718,11 @@ export default defineComponent({
       ],
       marketing: [
         {
-          label: "Marketing",
+          root: "Marketing",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -666,7 +730,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -675,7 +739,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -691,11 +755,11 @@ export default defineComponent({
       ],
       rd: [
         {
-          label: "R&D",
+          root: "R&D",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -703,7 +767,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -712,7 +776,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -728,11 +792,11 @@ export default defineComponent({
       ],
       communication: [
         {
-          label: "Communication",
+          root: "Communication",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
               // children: [
               //   { label: "Quality ingredients" },
@@ -740,7 +804,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
               // disabled: true,
               // children: [
@@ -749,7 +813,7 @@ export default defineComponent({
               // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
               // children: [
               //   {
@@ -765,37 +829,67 @@ export default defineComponent({
       ],
       annuaire: [
         {
-          label: "Annuaire d’entreprise",
+          root: "Annuaire d’entreprise",
 
           children: [
             {
-              label: "Good food (with icon)",
+              label: "Good food",
               icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
             },
             {
-              label: "Good service (disabled node with icon)",
+              label: "Good service",
               icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
             },
             {
-              label: "Pleasant surroundings (with icon)",
+              label: "Pleasant surroundings",
               icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
+            },
+          ],
+        },
+      ],
+      customize: [
+        {
+          label: "Satisfied customers",
+          header: "root",
+          children: [
+            {
+              label: "Good food",
+              icon: "restaurant_menu",
+              header: "generic",
+              children: [
+                {
+                  label: "Quality ingredients",
+                  header: "generic",
+                  body: "story",
+                  story: "Lorem ipsum dolor sit amet.",
+                },
+                {
+                  label: "Good recipe",
+                  body: "story",
+                  story:
+                    "A Congressman works with his equally conniving wife to exact revenge on the people who betrayed him.",
+                },
+              ],
+            },
+            {
+              label: "Good service",
+              header: "generic",
+              body: "toggle",
+              caption:
+                "Why are we as consumers so captivated by stories of great customer service? Perhaps it is because...",
+              enabled: false,
+              children: [
+                { label: "Prompt attention" },
+                { label: "Professional waiter" },
+              ],
+            },
+            {
+              label: "Pleasant surroundings",
+              children: [
+                { label: "Happy atmosphere" },
+                { label: "Good table presentation", header: "generic" },
+                { label: "Pleasing decor" },
+              ],
             },
           ],
         },

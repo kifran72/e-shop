@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <q-parallax :height="200" :speed="0.5">
+    <q-parallax :height="200" :speed="0.5" class="bg-black">
       <template v-slot:media>
         <img
           src="https://www.gestimum.com/wp-content/uploads/logiciel-gestion-stock.jpg"
@@ -112,7 +112,7 @@
       Lorem Ipsum is therefore always free from repetition, injected humour, or
       non-characteristic words etc.
     </p>
-    <q-parallax :height="200" :speed="0.5">
+    <q-parallax :height="200" :speed="0.5" class="bg-black">
       <template v-slot:media>
         <img
           src="https://archipelia.com/wp-content/uploads/2019/04/Logiciel-Gestion-de-Stock-et-Logistique.jpeg"

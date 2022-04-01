@@ -7,7 +7,7 @@
       <q-toolbar class="q-pr-lg q-pl-lg">
         <q-icon
           class="cursor-pointer"
-          v-if="screen.xs || screen.sm"
+          v-if="user && (screen.xs || screen.sm)"
           name="menu"
           size="lg"
           @click="toggleLeftDrawer"
@@ -15,9 +15,11 @@
 
         <q-toolbar-title
           :class="
-            screen.xl || screen.lg || screen.md || screen.md
-              ? 'q-ml-sm'
-              : 'flex flex-center'
+            user
+              ? screen.xs || screen.sm
+                ? 'flex flex-center'
+                : 'q-ml-sm'
+              : 'q-ml-sm'
           "
           class="q-pa-md"
         >
@@ -35,37 +37,36 @@
 
     <!-- Desktop -->
     <q-drawer
-      v-if="user"
+      v-if="user && (screen.md || screen.lg || screen.xl)"
       v-model="leftDrawerOpen"
       show-if-above
       :mini="miniState"
       @mouseover="miniState = false"
       @mouseout="miniState = true"
-      :width="450"
+      :width="300"
       :breakpoint="500"
       class="bg-black"
+      elevated
     >
       <q-scroll-area
         class="fit"
         :thumb-style="thumbStyle"
         :bar-style="barStyle"
       >
-        <Categories
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <Categories />
       </q-scroll-area>
     </q-drawer>
 
     <!-- Mobile -->
     <q-drawer
       class="categories q-pa-md"
-      v-if="user && (screen.sm || screen.xs)"
+      v-if="user && (screen.xs || screen.sm)"
       v-model="leftDrawerOpen"
       side="left"
+      :width="350"
+      style="padding-top: 4.5rem"
     >
-      <div class="flex justify-end q-pa-md">
+      <div class="flex justify-end q-pa-md absolute-top">
         <q-icon
           name="close"
           class="cursor-pointer"
@@ -73,29 +74,13 @@
           @click="toggleLeftDrawer"
         />
       </div>
-      <Categories
-        v-for="link in essentialLinks"
-        :key="link.title"
-        v-bind="link"
-      />
-      <!-- <q-input
-        dark
-        dense
-        v-model="text"
-        input-class="text-right"
-        class="q-pa-lg absolute-bottom"
-        placeholder="Rechercher"
+      <q-scroll-area
+        class="fit"
+        :thumb-style="thumbStyle"
+        :bar-style="barStyle"
       >
-        <template v-slot:append>
-          <q-icon v-if="text === ''" name="search" size="md" />
-          <q-icon
-            v-else
-            name="clear"
-            class="cursor-pointer"
-            @click="text = ''"
-          />
-        </template>
-      </q-input> -->
+        <Categories />
+      </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
@@ -145,7 +130,7 @@ export default {
   },
   setup() {
     const leftDrawerOpen = ref(false);
-    const rightDrawerOpen = ref(false);
+    const mobileDrawerOpen = ref(false);
     const $store = useStore();
 
     const $q = useQuasar();
@@ -160,9 +145,9 @@ export default {
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
-      rightDrawerOpen,
-      toggleRightDrawer() {
-        rightDrawerOpen.value = !rightDrawerOpen.value;
+      mobileDrawerOpen,
+      toggleMobileDrawer() {
+        mobileDrawerOpen.value = !mobileDrawerOpen.value;
       },
       thumbStyle: {
         right: "4px",

@@ -1,16 +1,6 @@
 <template>
   <q-page class="q-pa-xl">
     <h3 style="margin-top: 0">Recrutement</h3>
-
-    <q-btn
-      class="q-mt-xl"
-      color="white"
-      text-color="blue"
-      unelevated
-      to="/"
-      label="Go Home"
-      no-caps
-    />
   </q-page>
 </template>
 

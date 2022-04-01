@@ -17,20 +17,18 @@
 
     <q-separator dark />
     <q-item
-      :active="
-        $route.path === '/entreprise/management/employes' ||
-        $route.path === '/entreprise/management/formations' ||
-        $route.path === '/entreprise/management/recrutements'
-      "
+      v-for="(categorie, index) in categories"
+      :key="index"
+      :active="$route.path.includes(categorie.link)"
     >
       <q-item-section avatar>
-        <q-icon name="groups" />
+        <q-icon :name="categorie[0].icon" />
       </q-item-section>
 
       <q-item-section>
         <q-tree
           default-expand-all
-          :nodes="management"
+          :nodes="categorie"
           dark
           node-key="label"
           color="transparent"
@@ -38,9 +36,7 @@
           <template v-slot:default-header="prop">
             <span
               :class="
-                $route.path === '/entreprise/management/employes' ||
-                $route.path === '/entreprise/management/formations' ||
-                $route.path === '/entreprise/management/recrutements'
+                $route.path.includes(prop.node.link)
                   ? 'text-primary'
                   : 'text-white'
               "
@@ -64,333 +60,6 @@
         </q-tree>
       </q-item-section>
     </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="shopping_cart" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree
-          :nodes="webmarketplace"
-          dark
-          node-key="label"
-          color="transparent"
-        >
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-    <!--
-    <q-separator dark />
-  
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="description" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree :nodes="crm" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="supervised_user_circle" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree
-          :nodes="serviceClient"
-          dark
-          node-key="label"
-          color="transparent"
-        >
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="work_history" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree :nodes="achats" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree></q-item-section
-      >
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="timeline" />
-      </q-item-section>
-
-      <q-item-section
-        ><q-tree :nodes="productions" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="widgets" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree :nodes="logistique" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="contact_page" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree :nodes="comptabilite" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="support" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree :nodes="sav" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="storefront" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree :nodes="marketing" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="construction" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree :nodes="rd" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="question_answer" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree
-          :nodes="communication"
-          dark
-          node-key="label"
-          color="transparent"
-        >
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
-
-    <q-separator dark />
-
-    <q-item>
-      <q-item-section avatar>
-        <q-icon name="fact_check" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-tree :nodes="annuaire" dark node-key="label" color="transparent">
-          <template v-slot:default-header="prop">
-            <span class="text-white">
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              clickable
-              v-ripple
-              class="text-white cursor-pointer"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item> -->
   </q-list>
 </template>
 
@@ -415,484 +84,417 @@ export default defineComponent({
           label: "Vue d'ensemble",
         },
       ],
-      management: [
-        {
-          root: "Management",
-          children: [
-            {
-              label: "Gestion des employés",
-              link: "/entreprise/management/employes",
-              children: [],
-            },
-            {
-              label: "Formations",
-              link: "/entreprise/management/formations",
-              icon: "room_service",
-            },
-            {
-              label: "Recrutements",
-              link: "/entreprise/management/recrutements",
-              icon: "photo",
-            },
-          ],
-        },
-      ],
-      webmarketplace: [
-        {
-          root: "Webmarketplace",
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              selectable: true,
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-            },
-          ],
-        },
-      ],
-      crm: [
-        {
-          root: "CRM",
 
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      serviceClient: [
-        {
-          root: "Service client",
+      categories: [
+        [
+          {
+            root: "Management",
+            icon: "groups",
+            link: "/entreprise/management/",
+            children: [
+              {
+                label: "Gestion des employés",
+                link: "/entreprise/management/employes",
+              },
+              {
+                label: "Formations",
+                link: "/entreprise/management/formations",
+              },
+              {
+                label: "Recrutements",
+                link: "/entreprise/management/recrutements",
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "Webmarketplace",
+            icon: "shopping_cart",
+            link: "/entreprise/webmarketplace/",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "CRM",
+            icon: "description",
+            link: "/entreprise/crm/",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "Service client",
+            icon: "supervised_user_circle",
+            link: "/entreprise/serviceClient/",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+                // disabled: true,
+                // children: [
+                //   { label: "Prompt attention" },
+                //   { label: "Professional waiter" },
+                // ],
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+                // children: [
+                //   {
+                //     label: "Happy atmosphere (with image)",
+                //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
+                //   },
+                //   { label: "Good table presentation" },
+                //   { label: "Pleasing decor" },
+                // ],
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "Achats",
+            icon: "work_history",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+                // children: [
+                //   { label: "Quality ingredients" },
+                //   { label: "Good recipe" },
+                // ],
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+                // disabled: true,
+                // children: [
+                //   { label: "Prompt attention" },
+                //   { label: "Professional waiter" },
+                // ],
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+                // children: [
+                //   {
+                //     label: "Happy atmosphere (with image)",
+                //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
+                //   },
+                //   { label: "Good table presentation" },
+                //   { label: "Pleasing decor" },
+                // ],
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "Productions",
+            icon: "timeline",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+                // children: [
+                //   { label: "Quality ingredients" },
+                //   { label: "Good recipe" },
+                // ],
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+                // disabled: true,
+                // children: [
+                //   { label: "Prompt attention" },
+                //   { label: "Professional waiter" },
+                // ],
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+                // children: [
+                //   {
+                //     label: "Happy atmosphere (with image)",
+                //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
+                //   },
+                //   { label: "Good table presentation" },
+                //   { label: "Pleasing decor" },
+                // ],
+              },
+            ],
+          },
+        ],
 
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      achats: [
-        {
-          root: "Achats",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      productions: [
-        {
-          root: "Productions",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      logistique: [
-        {
-          root: "Logistique",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      comptabilite: [
-        {
-          root: "Comptabilité",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      sav: [
-        {
-          root: "SAV",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      marketing: [
-        {
-          root: "Marketing",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      rd: [
-        {
-          root: "R&D",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      communication: [
-        {
-          root: "Communication",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              // children: [
-              //   { label: "Quality ingredients" },
-              //   { label: "Good recipe" },
-              // ],
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-              // disabled: true,
-              // children: [
-              //   { label: "Prompt attention" },
-              //   { label: "Professional waiter" },
-              // ],
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-              // children: [
-              //   {
-              //     label: "Happy atmosphere (with image)",
-              //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
-              //   },
-              //   { label: "Good table presentation" },
-              //   { label: "Pleasing decor" },
-              // ],
-            },
-          ],
-        },
-      ],
-      annuaire: [
-        {
-          root: "Annuaire d’entreprise",
-
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-            },
-            {
-              label: "Good service",
-              icon: "room_service",
-            },
-            {
-              label: "Pleasant surroundings",
-              icon: "photo",
-            },
-          ],
-        },
-      ],
-      customize: [
-        {
-          label: "Satisfied customers",
-          header: "root",
-          children: [
-            {
-              label: "Good food",
-              icon: "restaurant_menu",
-              header: "generic",
-              children: [
-                {
-                  label: "Quality ingredients",
-                  header: "generic",
-                  body: "story",
-                  story: "Lorem ipsum dolor sit amet.",
-                },
-                {
-                  label: "Good recipe",
-                  body: "story",
-                  story:
-                    "A Congressman works with his equally conniving wife to exact revenge on the people who betrayed him.",
-                },
-              ],
-            },
-            {
-              label: "Good service",
-              header: "generic",
-              body: "toggle",
-              caption:
-                "Why are we as consumers so captivated by stories of great customer service? Perhaps it is because...",
-              enabled: false,
-              children: [
-                { label: "Prompt attention" },
-                { label: "Professional waiter" },
-              ],
-            },
-            {
-              label: "Pleasant surroundings",
-              children: [
-                { label: "Happy atmosphere" },
-                { label: "Good table presentation", header: "generic" },
-                { label: "Pleasing decor" },
-              ],
-            },
-          ],
-        },
+        [
+          {
+            disabled: true,
+            root: "Logistique",
+            icon: "widgets",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+                // children: [
+                //   { label: "Quality ingredients" },
+                //   { label: "Good recipe" },
+                // ],
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+                // disabled: true,
+                // children: [
+                //   { label: "Prompt attention" },
+                //   { label: "Professional waiter" },
+                // ],
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+                // children: [
+                //   {
+                //     label: "Happy atmosphere (with image)",
+                //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
+                //   },
+                //   { label: "Good table presentation" },
+                //   { label: "Pleasing decor" },
+                // ],
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "Comptabilité",
+            icon: "contact_page",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+                // children: [
+                //   { label: "Quality ingredients" },
+                //   { label: "Good recipe" },
+                // ],
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+                // disabled: true,
+                // children: [
+                //   { label: "Prompt attention" },
+                //   { label: "Professional waiter" },
+                // ],
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+                // children: [
+                //   {
+                //     label: "Happy atmosphere (with image)",
+                //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
+                //   },
+                //   { label: "Good table presentation" },
+                //   { label: "Pleasing decor" },
+                // ],
+              },
+            ],
+          },
+        ],
+        [
+          {
+            root: "SAV",
+            icon: "support",
+            disabled: true,
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+                // children: [
+                //   { label: "Quality ingredients" },
+                //   { label: "Good recipe" },
+                // ],
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+                // disabled: true,
+                // children: [
+                //   { label: "Prompt attention" },
+                //   { label: "Professional waiter" },
+                // ],
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+                // children: [
+                //   {
+                //     label: "Happy atmosphere (with image)",
+                //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
+                //   },
+                //   { label: "Good table presentation" },
+                //   { label: "Pleasing decor" },
+                // ],
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "Marketing",
+            icon: "storefront",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+                // children: [
+                //   { label: "Quality ingredients" },
+                //   { label: "Good recipe" },
+                // ],
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+                // disabled: true,
+                // children: [
+                //   { label: "Prompt attention" },
+                //   { label: "Professional waiter" },
+                // ],
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+                // children: [
+                //   {
+                //     label: "Happy atmosphere (with image)",
+                //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
+                //   },
+                //   { label: "Good table presentation" },
+                //   { label: "Pleasing decor" },
+                // ],
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "R&D",
+            icon: "construction",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+                // children: [
+                //   { label: "Quality ingredients" },
+                //   { label: "Good recipe" },
+                // ],
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+                // disabled: true,
+                // children: [
+                //   { label: "Prompt attention" },
+                //   { label: "Professional waiter" },
+                // ],
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+                // children: [
+                //   {
+                //     label: "Happy atmosphere (with image)",
+                //     img: "https://cdn.quasar.dev/img/logo_calendar_128px.png",
+                //   },
+                //   { label: "Good table presentation" },
+                //   { label: "Pleasing decor" },
+                // ],
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "Communication",
+            icon: "question_answer",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+              },
+            ],
+          },
+        ],
+        [
+          {
+            disabled: true,
+            root: "Annuaire d’entreprise",
+            icon: "fact_check",
+            children: [
+              {
+                label: "Good food",
+                icon: "restaurant_menu",
+              },
+              {
+                label: "Good service",
+                icon: "room_service",
+              },
+              {
+                label: "Pleasant surroundings",
+                icon: "photo",
+              },
+            ],
+          },
+        ],
       ],
     };
   },

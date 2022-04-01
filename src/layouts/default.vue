@@ -46,7 +46,6 @@
       :width="300"
       :breakpoint="500"
       class="bg-black"
-      elevated
     >
       <q-scroll-area
         class="fit"

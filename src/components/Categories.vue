@@ -14,52 +14,50 @@
         Vue d'ensemble</q-item-section
       >
     </q-item>
+    <div v-for="(categorie, index) in categories" :key="index">
+      <q-separator dark />
+      <q-item :active="$route.path.includes(categorie.link)">
+        <q-item-section avatar>
+          <q-icon :name="categorie[0].icon" />
+        </q-item-section>
 
-    <q-separator dark />
-    <q-item
-      v-for="(categorie, index) in categories"
-      :key="index"
-      :active="$route.path.includes(categorie.link)"
-    >
-      <q-item-section avatar>
-        <q-icon :name="categorie[0].icon" />
-      </q-item-section>
+        <q-item-section>
+          <q-tree
+            default-expand-all
+            :nodes="categorie"
+            dark
+            node-key="label"
+            color="transparent"
+          >
+            <template v-slot:default-header="prop">
+              <span
+                :class="
+                  $route.path.includes(prop.node.link)
+                    ? 'text-primary'
+                    : 'text-white'
+                "
+              >
+                {{ prop.node.root }}
+              </span>
 
-      <q-item-section>
-        <q-tree
-          default-expand-all
-          :nodes="categorie"
-          dark
-          node-key="label"
-          color="transparent"
-        >
-          <template v-slot:default-header="prop">
-            <span
-              :class="
-                $route.path.includes(prop.node.link)
-                  ? 'text-primary'
-                  : 'text-white'
-              "
-            >
-              {{ prop.node.root }}
-            </span>
-            <div
-              v-if="prop.node.label"
-              v-ripple
-              clickable
-              :class="
-                $route.path === prop.node.link
-                  ? 'text-primary full-width'
-                  : 'text-white cursor-pointer full-width'
-              "
-              @click="$router.push(prop.node.link)"
-            >
-              {{ prop.node.label }}
-            </div>
-          </template>
-        </q-tree>
-      </q-item-section>
-    </q-item>
+              <div
+                v-if="prop.node.label"
+                v-ripple
+                clickable
+                :class="
+                  $route.path === prop.node.link
+                    ? 'text-primary full-width'
+                    : 'text-white cursor-pointer full-width'
+                "
+                @click="$router.push(prop.node.link)"
+              >
+                {{ prop.node.label }}
+              </div>
+            </template>
+          </q-tree>
+        </q-item-section>
+      </q-item>
+    </div>
   </q-list>
 </template>
 

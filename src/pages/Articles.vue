@@ -4,19 +4,35 @@
       <div v-for="article in getArticle" :key="article">
         <div v-for="item in article.items" :key="item">
           <h5
-            style="margin-top: 2rem; margin-bottom: 2rem; text-decoration: underline;"
-          >Categorie {{ item.label }}</h5>
+            style="
+              margin-top: 2rem;
+              margin-bottom: 2rem;
+              text-decoration: underline;
+            "
+          >
+            {{ item.label }}
+          </h5>
           <div v-for="sexe in item.sexe" :key="sexe">
-            <h6 style="margin-top: 2rem; margin-bottom: 2rem;">
+            <h6 style="margin-top: 2rem; margin-bottom: 2rem">
               <b>{{ sexe.label }}</b>
             </h6>
             <div class="wrapper2">
-              <div class="q-pb-xl card" v-for="itemArticle in sexe.items" :key="itemArticle">
+              <div
+                class="q-pb-xl card"
+                v-for="itemArticle in sexe.items"
+                :key="itemArticle"
+              >
                 <q-img
                   class="itemImg shadow-4 cursor-pointer q-mb-md"
                   :src="itemArticle.image"
                   :alt="itemArticle.description"
-                  @click="goToArticle(itemArticle.id, itemArticle.type, itemArticle.origin)"
+                  @click="
+                    goToArticle(
+                      itemArticle.id,
+                      itemArticle.type,
+                      itemArticle.origin
+                    )
+                  "
                   spinner-color="primary"
                 />
                 <div class="flex justify-between">
@@ -29,7 +45,7 @@
                     ripple
                     icon="add_shopping_cart"
                     color="primary"
-                    @click="store.commit('carts/add', itemArticle), showNotif('Article ajouté !', 'black')"
+                    @click="addProduct(itemArticle)"
                   />
                 </div>
               </div>
@@ -39,7 +55,11 @@
       </div>
     </div>
     <!-- place QPageScroller at end of page -->
-    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+    <q-page-scroller
+      position="bottom-right"
+      :scroll-offset="150"
+      :offset="[18, 18]"
+    >
       <q-btn fab icon="keyboard_arrow_up" color="black" />
     </q-page-scroller>
   </q-page>
@@ -104,17 +124,34 @@ export default defineComponent({
       showNotif(message, color) {
         $q.notify({
           message: message,
-          color: 'primary',
+          color: "primary",
           position: "bottom-left",
-          actions: [{ icon: 'close', color: 'white' }]
-        })
-      }
+          actions: [{ icon: "close", color: "white" }],
+        });
+      },
     };
   },
   methods: {
     goToArticle(idArticle, type, origin) {
-      this.$router.push("/" + this.$route.params.category + "/" + type + "/" + origin + "/" + idArticle);
-    }
+      this.$router.push(
+        "/" +
+          this.$route.params.category +
+          "/" +
+          type +
+          "/" +
+          origin +
+          "/" +
+          idArticle
+      );
+    },
+    addProduct(itemArticle) {
+      if (this.user) {
+        this.$store.commit("carts/add", itemArticle);
+        this.showNotif("Article ajouté au pannier!", "black");
+      } else {
+        this.showNotif("Connectez vous pour acheter des articles", "black");
+      }
+    },
   },
   computed: {
     getArticle() {
@@ -123,7 +160,9 @@ export default defineComponent({
       );
       return items;
     },
+    user() {
+      return this.$store.state.user.infos;
+    },
   },
-
 });
 </script>

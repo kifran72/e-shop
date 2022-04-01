@@ -15,12 +15,13 @@
     "apk": "quasar build -m capacitor -T android",
     "mobile": "quasar dev -m capacitor -T android",
     "addMobile": "quasar mode add capacitor",
-    "deploy": "yarn build && firebase deploy"
+    "deploy": "yarn build && firebase deploy --only hosting:allinone-24c03"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "firebase": "^9.6.10",
     "firebase-tools": "^10.2.2",
     "quasar": "^2.0.0",
     "vue": "^3.0.0",

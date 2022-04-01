@@ -164,7 +164,6 @@ export default defineComponent({
       get: () => $store.state.user.logged,
       set: (val) => {
         $store.commit("user/login", val);
-        console.log($store.state.user.logged);
       },
     });
 

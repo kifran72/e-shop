@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "allinone-24c03",
     "public": "dist/spa",
     "ignore": [
       "firebase.json",

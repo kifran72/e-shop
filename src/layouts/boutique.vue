@@ -32,7 +32,7 @@
           dense
           v-model="text"
           input-class="text-right text-black"
-          class="q-pr-md"
+          class="q-pr-lg"
           placeholder="Rechercher"
         >
           <template v-slot:append>
@@ -45,13 +45,9 @@
             />
           </template>
         </q-input>
-        <q-separator
-          v-if="screen.lg || screen.xl"
-          class="q-ma-md"
-          vertical
-          inset
-        />
+
         <q-btn
+          v-if="user"
           class
           dense
           round
@@ -68,12 +64,15 @@
             >{{ store.state.carts.items.length }}</q-badge
           >
         </q-btn>
-        <!-- <q-icon
-          class="q-mr-md cursor-pointer"
-          name="shopping_cart"
-          size="lg"
-          @click="toggleRightDrawer"
-        />-->
+        <q-separator
+          v-if="user && (screen.md || screen.lg || screen.xl)"
+          class="q-ma-md"
+          vertical
+          inset
+        />
+
+        <SettingUser v-if="user && (screen.md || screen.lg || screen.xl)" />
+        <LoggingUser v-if="!user" />
       </q-toolbar>
     </q-header>
 
@@ -100,7 +99,14 @@
       v-model="leftDrawerOpen"
       side="left"
     >
-      <div class="flex justify-end q-pa-md">
+      <div
+        :class="
+          user
+            ? 'flex justify-between q-pa-md items-center'
+            : 'flex justify-end q-pa-md'
+        "
+      >
+        <SettingUser v-if="user && !(screen.md || screen.lg || screen.xl)" />
         <q-icon
           name="close"
           class="cursor-pointer"
@@ -203,13 +209,17 @@ import { useStore } from "vuex";
 import { useQuasar } from "quasar";
 import Categories from "components/Categories.vue";
 import Cart from "components/Cart.vue";
+import SettingUser from "src/components/user/setting.vue";
+import LoggingUser from "../components/user/login";
+
+import { login } from "../services/firebase/auth/google";
 
 const linksList = [
   {
     title: "Equipements",
     caption: "Tee-shirt",
     icon: "navigate_next",
-    link: "/equipements",
+    link: "/articles/equipements",
   },
   // {
   //   title: "Packs",
@@ -223,10 +233,19 @@ export default {
   components: {
     Categories,
     Cart,
+    SettingUser,
+    LoggingUser,
   },
   methods: {
     goToHome() {
       this.$router.push("/");
+    },
+    async loginUser() {
+      const user = await login();
+      if (user) {
+        this.$store.commit("user/login", user);
+        this.showNotif("Vous êtes connecté !");
+      }
     },
   },
   computed: {
@@ -237,6 +256,9 @@ export default {
       }
 
       return price;
+    },
+    user() {
+      return this.$store.state.user.infos;
     },
   },
   setup() {
@@ -273,6 +295,14 @@ export default {
         backgroundColor: "black",
         width: "9px",
         opacity: 0.2,
+      },
+      showNotif(message, color) {
+        $q.notify({
+          message: message,
+          color: "primary",
+          position: "bottom-left",
+          actions: [{ icon: "close", color: "white" }],
+        });
       },
     };
   },

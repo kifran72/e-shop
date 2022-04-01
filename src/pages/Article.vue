@@ -1,48 +1,16 @@
 <template>
-  <q-page style="padding: 1.5rem 3rem;">
+  <q-page style="padding: 1.5rem 3rem">
     <div class="flex items-center q-pb-lg">
       <q-icon class="cursor-pointer" name="west" size="lg" @click="goBack" />
-      <p class="cursor-pointer" style="margin: 0; margin-left: 1rem;" @click="goBack">Retour</p>
+      <p
+        class="cursor-pointer"
+        style="margin: 0; margin-left: 1rem"
+        @click="goBack"
+      >
+        Retour
+      </p>
     </div>
     <div class="wrapperArticle">
-      <!-- <q-carousel
-        v-model="slide"
-        class="text-white full-width"
-        :height="screen.xs ? '28rem' : '40rem'"
-        control-color="primary"
-        transition-prev="jump-right"
-        transition-next="jump-left"
-        swipeable
-        animated
-        navigation
-        padding
-        arrows
-      >
-        <q-carousel-slide name="style" class="column no-wrap flex-center" style="padding: 0;">
-          <q-img class="articleImg" :src="getArticle.image" spinner-color="white" />
-        </q-carousel-slide>
-        <q-carousel-slide name="tv" class="column no-wrap flex-center" style="padding: 0;">
-          <q-img
-            class="articleImg"
-            src="https://www.sip19.fr/5752-large_default/t-shirt-sport-femme-140g-shanghai.jpg"
-            spinner-color="white"
-          />
-        </q-carousel-slide>
-        <q-carousel-slide name="layers" class="column no-wrap flex-center" style="padding: 0;">
-          <q-img
-            class="articleImg"
-            src="https://www.toiture-epdm.fr/wp-content/uploads/2021/11/femme-terranova-t-shirt-oversize-esprit-sport-vert-c3a9meraude-vert-c3a9meraude-t-shirts.jpg"
-            spinner-color="white"
-          />
-        </q-carousel-slide>
-        <q-carousel-slide name="map" class="column no-wrap flex-center" style="padding: 0;">
-          <q-img
-            class="articleImg"
-            src="https://contents.mediadecathlon.com/p2048832/k$b67e312751e0d065b47daf016e786ffa/t-shirt-manches-courtes-jogging-femme-run-dry-marine.jpg?&f=800x800"
-            spinner-color="white"
-          />
-        </q-carousel-slide>
-      </q-carousel>-->
       <q-carousel
         class="carouselArticle"
         :height="screen.xs ? '28rem' : ''"
@@ -53,7 +21,11 @@
         thumbnails
         infinite
       >
-        <q-carousel-slide class="articleImg" :name="1" :img-src="getArticle.image" />
+        <q-carousel-slide
+          class="articleImg"
+          :name="1"
+          :img-src="getArticle.image"
+        />
         <q-carousel-slide
           class="articleImg"
           :name="2"
@@ -86,13 +58,13 @@
       <div :class="screen.xs ? '' : 'q-pl-lg  flex justify-between column'">
         <div>
           <h4 style="margin-bottom: 1rem">{{ getArticle.titre }}</h4>
-          <h6 style="margin: 0 0 1rem;">
+          <h6 style="margin: 0 0 1rem">
             Prix:
             <b>{{ getArticle.prix }} €</b>
           </h6>
           <p class="q-pb-md">{{ getArticle.description }}</p>
         </div>
-        <div class="flex flex-center" style="padding-bottom: 2rem;">
+        <div class="flex flex-center" style="padding-bottom: 2rem">
           <q-btn
             size="md"
             class="addToCart q-pa-md"
@@ -100,14 +72,18 @@
             ripple
             label="Ajouez au pannier"
             color="primary"
-            @click="store.commit('carts/add', getArticle), showNotif('Article ajouté !', 'black')"
+            @click="addProduct(getArticle)"
           />
         </div>
       </div>
     </div>
 
     <!-- place QPageScroller at end of page -->
-    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+    <q-page-scroller
+      position="bottom-right"
+      :scroll-offset="150"
+      :offset="[18, 18]"
+    >
       <q-btn fab icon="keyboard_arrow_up" color="black" />
     </q-page-scroller>
   </q-page>
@@ -192,18 +168,25 @@ export default defineComponent({
       showNotif(message, color) {
         $q.notify({
           message: message,
-          color: 'primary',
+          color: "primary",
           position: "bottom-left",
-          actions: [{ icon: 'close', color: 'white' }]
-        })
-      }
+          actions: [{ icon: "close", color: "white" }],
+        });
+      },
     };
   },
   methods: {
     goBack() {
-      this.$router.push("/equipements");
-
-    }
+      this.$router.push("/articles/equipements");
+    },
+    addProduct(itemArticle) {
+      if (this.user) {
+        this.$store.commit("carts/add", itemArticle);
+        this.showNotif("Article ajouté au pannier!", "black");
+      } else {
+        this.showNotif("Connectez vous pour acheter des articles", "black");
+      }
+    },
   },
   computed: {
     getArticle() {
@@ -221,7 +204,7 @@ export default defineComponent({
                   for (let article of sexe.items) {
                     // Test Article
                     if (article.id === this.$route.params.article) {
-                      result = article
+                      result = article;
                     }
                   }
                 }
@@ -232,7 +215,9 @@ export default defineComponent({
       }
       return result;
     },
+    user() {
+      return this.$store.state.user.infos;
+    },
   },
-
 });
 </script>

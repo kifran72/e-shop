@@ -1,5 +1,5 @@
 export default () => {
   return {
-    logged: false,
+    infos: null,
   };
 };
